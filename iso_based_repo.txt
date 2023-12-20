@@ -1,0 +1,24 @@
+mkdir -p /mnt/RHEL
+mount -o loop /root/rhel-server-6.3-x86_64-dvd.iso /mnt/RHEL
+
+vi /etc/yum.repos.d/rhel-dvd.repo
+[rhel-dvd]
+name=Red Hat Enterprise Linux $releasever - $basearch - DVD
+baseurl=file:///mnt/RHEL/Server/
+enabled=1
+gpgcheck=0
+
+yum clean all
+Loaded plugins: product-id, security, subscription-manager
+Updating certificate-based repositories.
+Unable to read consumer identity
+Cleaning repos: rhel-dvd
+Cleaning up Everything
+
+
+yum install xxxxx
+
+hata_1:
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: epel.
+çözüm_1:
+sudo sed -i 's/https/http/g' /etc/yum.repos.d/epel.repo
